@@ -55,7 +55,7 @@ ${url}`
 
   const switchValue = JSON.parse(event.body)?.switch || false
 
-  axios
+  await axios
     .get('https://openapi-ueaz.tuyaus.com/v1.0/token?grant_type=1', {
       headers: signedHeaders(
         clientId,
