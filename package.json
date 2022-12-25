@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next",
+    "dev:watch": "next-remote-watch ./posts",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export",
+    "lint": "next lint"
   },
   "keywords": [],
   "author": "",
@@ -13,15 +18,20 @@
     "@tuyapi/cloud": "^0.6.0",
     "axios": "^1.2.1",
     "dotenv": "^16.0.3",
+    "eslint-config-next": "^13.1.1",
     "hash.js": "^1.1.7",
     "js-sha256": "^0.9.0",
     "nanoid": "^3.3.4",
     "netlify-cli": "^12.5.0",
+    "next": "^13.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@netlify/functions": "^1.3.0",
     "@types/node": "^18.11.17",
+    "@types/react": "18.0.26",
     "@types/uuid": "^9.0.0",
     "typescript": "^4.9.4"
   }
