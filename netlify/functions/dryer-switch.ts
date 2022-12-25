@@ -55,7 +55,7 @@ ${url}`
 
   const switchValue = JSON.parse(event.body)?.switch || false
 
-  await axios
+  const j = await axios
     .get('https://openapi-ueaz.tuyaus.com/v1.0/token?grant_type=1', {
       headers: signedHeaders(
         clientId,
@@ -65,39 +65,37 @@ ${url}`
       ),
     })
     .then((r) => r.data)
-    .then((j) => {
-      if (j.success) {
-        const accessToken = j.result.access_token
-        const body = {
-          commands: [{ code: 'switch_1', value: switchValue }],
-        }
 
-        console.log(body)
+  if (j.success) {
+    const accessToken = j.result.access_token
+    const body = {
+      commands: [{ code: 'switch_1', value: switchValue }],
+    }
 
-        axios
-          .post(
-            `https://openapi-ueaz.tuyaus.com/v1.0/iot-03/devices/${deviceId}/commands`,
-            JSON.stringify(body),
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                access_token: accessToken,
-                ...signedHeaders(
-                  clientId,
-                  clientSecret,
-                  'POST',
-                  `/v1.0/iot-03/devices/${deviceId}/commands`,
-                  accessToken,
-                  JSON.stringify(body)
-                ),
-              },
-            }
-          )
-          .then((r) => console.log(r.data))
-      } else {
-        console.log(j)
+    console.log(body)
+
+    const r = await axios.post(
+      `https://openapi-ueaz.tuyaus.com/v1.0/iot-03/devices/${deviceId}/commands`,
+      JSON.stringify(body),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          access_token: accessToken,
+          ...signedHeaders(
+            clientId,
+            clientSecret,
+            'POST',
+            `/v1.0/iot-03/devices/${deviceId}/commands`,
+            accessToken,
+            JSON.stringify(body)
+          ),
+        },
       }
-    })
+    )
+    console.log(r.data)
+  } else {
+    console.log(j)
+  }
 
   return {
     statusCode: 200,
