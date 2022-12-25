@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "outDir": "dist",
+    "module": "CommonJS",
+    "rootDir": "netlify/functions",
+    "lib": ["ESNext", "DOM"]
+  }
+}
