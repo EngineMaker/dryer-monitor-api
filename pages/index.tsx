@@ -1,7 +1,8 @@
 import { NextPage } from 'next'
+import Head from 'next/head'
 
 const IndexPage: NextPage = () => {
-  const turn = (value) => {
+  const turn = (value: boolean) => {
     fetch('/.netlify/functions/dryer-switch', {
       method: 'POST',
       headers: {
@@ -19,10 +20,17 @@ const IndexPage: NextPage = () => {
   }
 
   return (
-    <div>
-      <button onClick={turnOn}>ON</button>
-      <button onClick={turnOff}>OFF</button>
-    </div>
+    <>
+      <Head>
+        <title>サンプル実装</title>
+      </Head>
+      <main>
+        <div>
+          <button onClick={turnOn}>ON</button>
+          <button onClick={turnOff}>OFF</button>
+        </div>
+      </main>
+    </>
   )
 }
 
